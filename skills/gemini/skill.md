@@ -21,12 +21,12 @@ Use the locally installed Google Gemini CLI (`/opt/homebrew/bin/gemini`, v0.27+)
 
 Canonical invocation:
 ```bash
-gemini --approval-mode yolo -m pro -p "<prompt>"
+GEMINI_CLI_TRUST_WORKSPACE=true gemini --approval-mode yolo -m pro -p "<prompt>"
 ```
 
 With stdin:
 ```bash
-<source> | gemini --approval-mode yolo -m pro -p "<prompt>"
+<source> | GEMINI_CLI_TRUST_WORKSPACE=true gemini --approval-mode yolo -m pro -p "<prompt>"
 ```
 
 ## Subcommands
@@ -36,7 +36,7 @@ With stdin:
 Gemini Pro grounds answers in Google Search when the prompt asks for current info.
 
 ```bash
-gemini --approval-mode yolo -m pro -p "Search the web and answer with cited sources: <query>"
+GEMINI_CLI_TRUST_WORKSPACE=true gemini --approval-mode yolo -m pro -p "Search the web and answer with cited sources: <query>"
 ```
 
 **Examples:**
@@ -323,7 +323,7 @@ gemini --approval-mode yolo -m pro -p "<question>"
 ## Instructions for the agent running this skill
 
 1. **Parse args** to pick a subcommand. If ambiguous: lookup/current-info → `search`; open-ended/creative → `brainstorm`; diff/PR/commit/file review → `review` (default; use `review-principal` only if user says "rigorous", "strict", "principal", or asks for "bug hunt"); otherwise → `ask`.
-2. **Always** use `-m pro --approval-mode yolo -p`.
+2. **Always** use `GEMINI_CLI_TRUST_WORKSPACE=true` as a prefix env var, `-m pro --approval-mode yolo -p`. Without the env var, Gemini refuses to run in non-interactive (headless) mode with exit code 55.
 3. **Sandbox check — before running any Gemini command that references absolute file paths in the prompt**: scan those paths. If any path is outside the current working directory (and its descendants), append `--include-directories <path>` for each root that's outside. Example: a spec in `/a/b/poc-repo/...` referencing C++ in `/a/b/legacy-system/...` needs `--include-directories /a/b/legacy-system`. Failing to do this **silently degrades the review** — Gemini will fall back to web_fetch, 404, and produce findings based only on files it could actually read.
 4. For `review` AND `review-principal`:
    - Auto-detect content type + language from the file extension (use the tables above).

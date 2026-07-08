@@ -41,10 +41,11 @@ So adopting the blueprint on a new machine only requires touching `~/.claude/` �
 
 MCPs are configured **per instance** in each instance's `.claude.json` file (not shared across instances).
 
-Currently installed:
-- **perplexity-ask** (`server-perplexity-ask`) — Perplexity search. Only exposes `perplexity_ask` (cheap). Do NOT use `perplexity_research` — expensive and inferior to Gemini.
+Currently installed: none.
 
-Gemini is **not** an MCP. It's the `/gemini` skill (CLI-based) — see [tool-usage.md](tool-usage.md).
+Perplexity (`perplexity-ask`) was removed 2026-07-02 — Gemini grounded search superseded it for all web research. Do not re-add it.
+
+Gemini is **not** an MCP. It's the `/gemini` skill (CLI-based) — see [tool-usage.md](tool-usage.md). This is the web-research tool.
 
 To manage MCPs for a specific instance:
 
