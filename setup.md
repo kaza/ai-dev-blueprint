@@ -37,6 +37,25 @@ Each non-default instance has these symlinks pointing at the default:
 
 So adopting the blueprint on a new machine only requires touching `~/.claude/` — the other instances inherit automatically once those symlinks exist.
 
+> **Recreating everything on a fresh machine** — launchers, per-profile `settings.json` deltas, the
+> Codex homes, and the cross-tool review policy — is a step-by-step procedure in
+> [how-to-profiles.md](how-to-profiles.md). This section is the concept; that doc is the checklist.
+
+## Codex Instances
+
+Codex uses the same isolation idea as Claude, keyed by `CODEX_HOME` instead of `CLAUDE_CONFIG_DIR`.
+
+| Instance | Command | Config Dir | Account | Terminal Color |
+|---|---|---|---|---|
+| almir | `codex-almir` | `~/.codex-almir/` | Personal | Black |
+| vvs | `codex-vvs` | `~/.codex-vvs/` | VVS work | Midnight (blue) |
+| (default) | `codex` | `~/.codex/` | Default | Default |
+
+Each named home sets `cli_auth_credentials_store = "file"` in its `config.toml` so logins stay
+isolated. The Codex review policy ([codex-review-policy.md](codex-review-policy.md)) is symlinked
+into each home as `AGENTS.md`, so `git pull` in the blueprint updates it everywhere — same pattern as
+Claude's `CLAUDE.md`. Named Codex launchers run `codex --yolo`.
+
 ## MCP Servers
 
 MCPs are configured **per instance** in each instance's `.claude.json` file (not shared across instances).
@@ -45,7 +64,7 @@ Currently installed: none.
 
 Perplexity (`perplexity-ask`) was removed 2026-07-02 — Gemini grounded search superseded it for all web research. Do not re-add it.
 
-Gemini is **not** an MCP. It's the `/gemini` skill (CLI-based) — see [tool-usage.md](tool-usage.md). This is the web-research tool.
+Gemini is **not** an MCP. It's the `/gemini` skill (CLI-based) — see [tool-usage.md](tool-usage.md). This is the web-research tool, and it's a **required** link in the chain (CLI-only; no MCP). If an old `~/.claude/settings.json` still carries a `mcpServers.gemini` (or `perplexity-ask`) block, remove it — those are stale.
 
 To manage MCPs for a specific instance:
 

@@ -7,7 +7,7 @@ For every feature or change:
 3. **Review plan** — Run the plan past Gemini and Codex before writing code. See [how-to-review-spec.md](how-to-review-spec.md).
 4. **Decide** — Evaluate suggestions from reviewers. Accept what makes sense, reject what doesn't. Claude decides, user approves.
 5. **Implement** — Write tests first ([how-to-write-tests.md](how-to-write-tests.md)), then code to make them pass. KISS — simplest thing that works.
-6. **Review code** — Triple review: Gemini + Codex + CodeRabbit, with Opus arbitrating. See [how-to-review-code.md](how-to-review-code.md).
+6. **Review code** — Triple review: Gemini + Codex + CodeRabbit, with Fable arbitrating. See [how-to-review-code.md](how-to-review-code.md).
 7. **Done** — Tests pass, reviewers happy, spec updated if needed.
 8. **Lessons learned** — Update spec with what didn't work, workarounds, surprises. Only the unexpected.
 

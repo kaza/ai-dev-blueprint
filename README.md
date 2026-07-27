@@ -9,16 +9,18 @@ Each file is a focused rulebook that can be loaded on demand. Drop the whole thi
 ### Baseline (applies to every step)
 - [`philosophy.md`](philosophy.md) — KISS, YAGNI, TDD
 - [`spec-anchored.md`](spec-anchored.md) — spec vs finding vs ADR, Q-NNN open questions, documentation structure
-- [`tool-usage.md`](tool-usage.md) — when to use Gemini / Codex / CodeRabbit / Perplexity
+- [`tool-usage.md`](tool-usage.md) — when to use Gemini / Codex / CodeRabbit / Cursor (Fable arbitrates)
 
 ### Machine & personal config (auto-loaded via `AGENTS.md`)
-- [`setup.md`](setup.md) — multi-machine paths, multi-instance Claude Code layout, MCP servers
+- [`setup.md`](setup.md) — multi-machine paths, multi-instance Claude Code + Codex layout, MCP servers
+- [`how-to-profiles.md`](how-to-profiles.md) — recreate all Claude/Codex profiles on a new machine (launchers, per-profile settings, review policy)
+- [`codex-review-policy.md`](codex-review-policy.md) — the Codex-side review chain (synced into each Codex home)
 - [`preferences.md`](preferences.md) — Git workflow, memory preferences
 
 ### Playbooks (read on demand)
 - [`how-to-develop.md`](how-to-develop.md) — the 8-step loop + fast track for bug fixes
 - [`how-to-review-spec.md`](how-to-review-spec.md) — pre-code plan review (Gemini + Codex)
-- [`how-to-review-code.md`](how-to-review-code.md) — Gemini + Codex + CodeRabbit, Opus arbitrates
+- [`how-to-review-code.md`](how-to-review-code.md) — Gemini + Codex + CodeRabbit, Fable arbitrates
 - [`how-to-write-tests.md`](how-to-write-tests.md) — 15 rules, Given/When/Then, DAMP > DRY
 - [`how-to-run-experiments.md`](how-to-run-experiments.md) — scientific method, hardware-friendly
 - [`how-to-reverse-engineer.md`](how-to-reverse-engineer.md) — legacy code → spec → new code
@@ -99,13 +101,17 @@ Per-project specs, ADRs, and experiments use the other starters in [project-leve
 
 | Role | Tool |
 |---|---|
-| Primary driver + final arbitration | Claude Opus |
+| Primary driver | Claude Opus |
+| Final review arbitration | **Fable** (the tiebreaker — not Opus) |
 | Plan review (pre-code) | Gemini + Codex |
 | Code review (post-code) | Gemini + Codex + CodeRabbit |
+| Optional third reviewer | Cursor (`/cursor`) — experimental, reintroducing |
 | PR review | CodeRabbit (GitHub-native) |
-| Quick lookup / research | Gemini CLI, Perplexity (fallback) |
+| Web research / lookup | Gemini CLI (required; Perplexity removed) |
 
 Every material finding from any reviewer is either fixed or explicitly rejected with a written rationale. That loop is what makes this different from "just let one model do it."
+
+Codex reviews through a slightly different chain than Claude (it routes Claude reviews read-only through `claude-eventus` and also lands on Fable as arbiter) — see [`codex-review-policy.md`](codex-review-policy.md).
 
 ## License
 

@@ -35,6 +35,8 @@ Format: `ETA ~10 min (now 11:14, finishes ~11:24)`. Without the anchor, "10 min"
 Reference (read when needed):
 - [spec-anchored.md](spec-anchored.md) — spec vs finding vs ADR, documentation structure
 - [tool-usage.md](tool-usage.md) — which AI for which task
+- [how-to-profiles.md](how-to-profiles.md) — recreate all Claude/Codex profiles on a new machine
+- [codex-review-policy.md](codex-review-policy.md) — the Codex-side review chain (synced into each Codex home)
 - [philosophy.md](philosophy.md) — the *why* behind the principles
 
 # Experiment triggers

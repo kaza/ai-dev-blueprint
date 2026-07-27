@@ -1,0 +1,18 @@
+# User-level review policy (Codex)
+
+*Canonical source for Codex's cross-tool review chain. Symlink this into each Codex home:*
+*`ln -sf ~/Documents/GitHub/ai-dev-blueprint/codex-review-policy.md ~/.codex-<name>/AGENTS.md`.*
+*The Claude-side equivalent lives in [`tool-usage.md`](tool-usage.md) — the two chains differ on*
+*purpose; keep both accurate.*
+
+- Use Gemini Pro and Fable for architecture, plan, and code reviews.
+- Run every Claude review read-only through the authenticated `claude-eventus`
+  Claude Code instance using Fable.
+- Use Fable for final review arbitration. Do not use Opus for reviews.
+- For non-trivial code changes, run CodeRabbit locally with
+  `coderabbit review --light --committed --base main` as a supplementary review.
+- Do not require the CodeRabbit GitHub app or its PR comment when the local CLI
+  review is available.
+- Treat reviewer output as advisory: verify every finding against the code, and
+  let a fresh Fable pass arbitrate conflicts and false positives.
+- Web research goes through Gemini (CLI). Perplexity is removed — do not use it.

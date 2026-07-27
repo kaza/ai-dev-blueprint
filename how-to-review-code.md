@@ -1,6 +1,6 @@
 # How to review code (post-implementation)
 
-After tests pass, before the PR merges: **three independent reviewers** read the code, **Opus arbitrates** their findings, and every finding is either fixed or explicitly rejected with written rationale.
+After tests pass, before the PR merges: **three independent reviewers** read the code, **Fable arbitrates** their findings (Opus drives, Fable is the tiebreaker), and every finding is either fixed or explicitly rejected with written rationale.
 
 This is the heart of the blueprint. Running the loop costs tokens and minutes; skipping it costs incidents and regressions.
 
@@ -39,9 +39,9 @@ Kick all three off. They run independently.
 
 Each reviewer emits a list of findings. Copy them into one place. Label each with `[CR]`, `[GM]`, `[CX]` so you know who flagged what — you'll refer back during arbitration and when writing the PR description.
 
-### 4. Opus arbitrates
+### 4. Fable arbitrates
 
-Claude reads all three lists and categorizes each finding:
+Fable reads all three lists and categorizes each finding (Opus drives the loop; Fable is the arbiter):
 
 | Category | What it means | What to do |
 |---|---|---|
