@@ -16,9 +16,9 @@ Each machine runs multiple Claude Code instances with isolated accounts. The env
 
 | Instance | Command | Config Dir | Account | Terminal Color |
 |---|---|---|---|---|
-| eventus | `claude-eventus` | `~/.claude-eventus/` | Eventus work account | Midnight (blue) |
-| tcp | `claude-tcp` | `~/.claude-tcp/` | TCP work account | Aubergine (purple) |
-| almir | `claude-almir` | `~/.claude-almir/` | Almir personal account | Lead (gray) |
+| eventus | `claude-eventus` | `~/.claude-eventus/` | Eventus work account | Midnight Indigo `#0C1445` |
+| tcp | `claude-tcp` | `~/.claude-tcp/` | TCP work account | Royal Plum `#2A0A3D` |
+| almir | `claude-almir` | `~/.claude-almir/` | Almir personal account | Graphite `#202028` |
 | (default) | `claude` | `~/.claude/` | Default account | Default |
 
 Shared across instances (symlinked): `plugins/`, `skills/`, `chrome/`, `CLAUDE.md`.
@@ -47,8 +47,8 @@ Codex uses the same isolation idea as Claude, keyed by `CODEX_HOME` instead of `
 
 | Instance | Command | Config Dir | Account | Terminal Color |
 |---|---|---|---|---|
-| almir | `codex-almir` | `~/.codex-almir/` | Personal | Black |
-| vvs | `codex-vvs` | `~/.codex-vvs/` | VVS work | Midnight (blue) |
+| almir | `codex-almir` | `~/.codex-almir/` | Personal | Graphite `#202028` (matches claude-almir) |
+| vvs | `codex-vvs` | `~/.codex-vvs/` | VVS work | Midnight Indigo `#0C1445` |
 | (default) | `codex` | `~/.codex/` | Default | Default |
 
 Each named home sets `cli_auth_credentials_store = "file"` in its `config.toml` so logins stay

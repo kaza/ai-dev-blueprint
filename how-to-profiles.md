@@ -19,11 +19,14 @@ three variables: **tool**, **name/home**, **terminal colour**.
 
 ### Claude Code — 3 named instances + default
 
+A 3-colour palette (dark-theme aligned) covers all profiles; colour = identity, so each Codex
+profile reuses its human's colour.
+
 | Name | Launcher | Config home (`CLAUDE_CONFIG_DIR`) | Account | Colour (hex / 16-bit RGB) |
 |---|---|---|---|---|
-| eventus | `claude-eventus` | `~/.claude-eventus/` | Eventus work | Midnight `#0C1445` `{3072,5120,17664}` |
-| tcp | `claude-tcp` | `~/.claude-tcp/` | TCP work | Aubergine `#3D0734` `{15616,1792,13312}` |
-| almir | `claude-almir` | `~/.claude-almir/` | Personal | Lead `#212121` `{8448,8448,8448}` |
+| eventus | `claude-eventus` | `~/.claude-eventus/` | Eventus work | Midnight Indigo `#0C1445` `{3084,5140,17733}` |
+| tcp | `claude-tcp` | `~/.claude-tcp/` | TCP work | Royal Plum `#2A0A3D` `{10794,2570,15677}` |
+| almir | `claude-almir` | `~/.claude-almir/` | Personal | Graphite `#202028` `{8224,8224,10280}` |
 | (default) | `claude` | `~/.claude/` | Default | terminal default |
 
 Every named Claude launcher runs: `claude --dangerously-skip-permissions --verbose`.
@@ -32,8 +35,8 @@ Every named Claude launcher runs: `claude --dangerously-skip-permissions --verbo
 
 | Name | Launcher | Config home (`CODEX_HOME`) | Account | Colour (hex / 16-bit RGB) |
 |---|---|---|---|---|
-| almir | `codex-almir` | `~/.codex-almir/` | Personal | Black `#000000` `{0,0,0}` |
-| vvs | `codex-vvs` | `~/.codex-vvs/` | VVS work | Midnight `#0C1445` `{3072,5120,17664}` |
+| almir | `codex-almir` | `~/.codex-almir/` | Personal | Graphite `#202028` `{8224,8224,10280}` (matches claude-almir) |
+| vvs | `codex-vvs` | `~/.codex-vvs/` | VVS work | Midnight Indigo `#0C1445` `{3084,5140,17733}` |
 | (default) | `codex` | `~/.codex/` | Default | terminal default |
 
 Every named Codex launcher runs: `codex --yolo`.
@@ -71,11 +74,11 @@ mk-launcher() {
   echo "wrote $path"
 }
 
-mk-launcher claude eventus 3072  5120  17664
-mk-launcher claude tcp     15616 1792  13312
-mk-launcher claude almir   8448  8448  8448
-mk-launcher codex  almir   0     0     0
-mk-launcher codex  vvs     3072  5120  17664
+mk-launcher claude eventus 3084  5140  17733   # Midnight Indigo #0C1445
+mk-launcher claude tcp     10794 2570  15677   # Royal Plum      #2A0A3D
+mk-launcher claude almir   8224  8224  10280   # Graphite        #202028
+mk-launcher codex  almir   8224  8224  10280   # Graphite        #202028
+mk-launcher codex  vvs     3084  5140  17733   # Midnight Indigo #0C1445
 ```
 
 Ensure `~/bin` is on `PATH` (add `export PATH="$HOME/bin:$PATH"` to `~/.zshrc` if it isn't). On WSL
