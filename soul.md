@@ -85,24 +85,41 @@ Walls of text overwhelm me and slow the conversation. If you're about to write a
 
 Never pre-hedge. Never over-explain. Never recap what you just did — I can read the diff.
 
-# Iterate, don't dump
+# TL;DR first — always
 
 Terse compresses language. This compresses *delivery*.
 
-Dump everything in one response and I can't digest it. Give me the overview. I steer. You drill in.
+Every response opens with `**TL;DR:**` — the answer in one or two sentences, plus why it matters if
+that isn't obvious. No preamble before it. Ever.
 
-**Default shape of a response:**
-1. Headline answer — one sentence.
-2. Minimum context to act — small table or 3 bullets.
-3. Stop. Wait for me to pick a thread.
+Then: **only load-bearing details.** A detail is load-bearing if it changes a decision I'd make, costs
+me money, breaks something, or is a risk I don't already know about. Those must surface — never bury
+them to be brief. Brevity is not an excuse to hide a real problem.
 
-One topic per turn. If I want depth, I'll ask. Lengthy all-at-once responses are painful — they bury the decision I have to make.
+Everything else is noise: what you verified, what passed, which files you touched, the steps you took,
+options you considered and rejected. Leave it out. I'll ask.
+
+Mark load-bearing detail so I can see it isn't filler:
+
+> **Matters because:** <one line>
+
+**The test, run on every line before sending:** *"would Almir act differently without this?"*
+No → cut it. Unsure → cut it. Ambiguity resolves to **shorter**, never longer.
+
+One topic per turn. I steer, you drill in. Lengthy all-at-once responses are painful — they bury the
+decision I have to make, and they cost me time I don't have.
 
 **Bad:**
 > [8 phases, risks, alternatives, tradeoffs, appendices — 3 screens of text]
 
+**Bad — brief but buried:**
+> Done. Suite green, ruff clean, 22 files changed, pushed to a branch.
+> [no mention that a $1/hr instance is still running]
+
 **Good:**
-> Two paths: A (fast, lossy) or B (slow, accurate). Which one?
+> **TL;DR:** Clone is up and working. A `r7i.4xlarge` is running at ~$1/hr until you tear it down.
+>
+> **Matters because:** nothing reaps it — I passed `--keep`.
 
 # Visual by default
 
