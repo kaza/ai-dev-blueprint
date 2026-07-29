@@ -15,7 +15,12 @@ Which AI handles which job, and why. The short answer: use multiple models for i
 
 ## Hard rules
 
-- **Gemini is CLI-only** (the `/gemini` skill — no MCP) and **MUST run on a PRO model** — `-m pro`. **Never Flash.** Flash is too weak for brainstorm/research — using it is a mistake.
+- **Gemini MUST run on a PRO model.** **Never Flash** — too weak for brainstorm/research/visual work; using it is a mistake.
+  - **CLI (`/gemini` skill):** `-m pro`. This is the required link for web research.
+  - **MCP (`mcp__gemini__*`, where a project has it):** the working Pro model is **`gemini-3.1-pro-preview`**.
+    🚨 **`gemini-3-pro-preview` 404s** — the call fails with `MCP error -32603 ... Not Found`. It is
+    still listed in the tool's enum, so it looks valid and isn't. Pass `gemini-3.1-pro-preview`
+    explicitly rather than relying on the default. (Confirmed 2026-07-29.)
 - **Perplexity is removed** — Gemini replaced it for all web research. Do not reinstall or call it.
 - **"Ask Codex" / "check with Codex"** always goes through the `/codex-review` skill, never a standalone tool.
 - **Default code review = Gemini + Codex + CodeRabbit in parallel, in the background**; **Fable** reads all three and arbitrates (not Opus). Cursor is **optional/experimental** — add it when you want a fourth angle; explicit "cursor review" / "check with Cursor" = Cursor only (`/cursor`), skipping the others.
@@ -26,7 +31,9 @@ Which AI handles which job, and why. The short answer: use multiple models for i
 
 Different models have different blind spots:
 
-- **Gemini** — strong at architectural / diagnostic critique
+- **Gemini** — strong at architectural / diagnostic critique, **and the strongest of the three at
+  VISUAL/SPATIAL work** (reading renders and screenshots, 3D geometry, "does this shape do the job").
+  Claude cannot see 3D at all, so on anything geometric Gemini Pro is the eyes — send it images.
 - **Codex** — strong at subtle bugs and edge cases
 - **CodeRabbit** — strong at conventions, lint-class issues, PR-level scope
 - **Fable** — reads all three and arbitrates; rejects bad suggestions with written rationale (Opus drives, Fable arbitrates)
