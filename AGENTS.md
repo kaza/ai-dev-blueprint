@@ -10,6 +10,10 @@ These apply to every task. If a suggestion violates one, call it out.
 - **YAGNI** — only what's asked for.
 - **TDD** — tests first, code second (experiments excepted).
 - **Spec-anchored** — no code without a spec.
+- **Fail loud** — never swallow an exception. A `catch`/`except` that logs and carries on hides
+  the very failure it was meant to survive, and the system then lies about being healthy.
+  Swallowing is undesired by default and requires my **explicit approval**, recorded in a
+  comment naming the reason. Otherwise: let it propagate, or stop the affected work.
 
 # Status updates
 
