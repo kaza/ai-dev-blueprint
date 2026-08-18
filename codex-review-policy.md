@@ -16,3 +16,11 @@
 - Treat reviewer output as advisory: verify every finding against the code, and
   let a fresh Fable pass arbitrate conflicts and false positives.
 - Web research goes through Gemini (CLI). Perplexity is removed — do not use it.
+
+# Runtime rules (Almir, 2026-08-18)
+
+- **NEVER enable fast mode** (`/fast`). It burns the weekly quota several times faster for the same
+  work — two Codex seats were drained in one day on 2026-08-17/18 with it on. If the status line shows
+  `fast`, run `/fast` once to turn it off and say so in the next message. It is a per-session toggle,
+  not a config key, so check the status line, not `config.toml`.
+- Reasoning effort and model stay as briefed; do not change either without an explicit instruction.
