@@ -10,7 +10,7 @@ Which AI handles which job, and why. The short answer: use multiple models for i
 | **Final review arbitration** | **Fable** | The tiebreaker across all reviewers — not Opus |
 | Plan review (pre-code) | Gemini + Codex | Independent second opinions catch bad plans early |
 | Code review (post-code) | Gemini + Codex + CodeRabbit | Multi-review; every finding must be addressed or rejected |
-| Optional third review + brainstorm | Cursor (`/cursor` skill) | Composer 2.5. **Optional / experimental — reintroducing.** Not in the default loop. |
+| Optional third review + brainstorm | Cursor (`/cursor` skill) | Composer 2.5. **Available and verified working** (2026-08-02). Optional — not in the default loop. |
 | Web research / search / brainstorm | Gemini (`/gemini` skill) | **Required** link. CLI-only (no MCP). Default model `pro`. |
 
 ## Hard rules
@@ -26,6 +26,28 @@ Which AI handles which job, and why. The short answer: use multiple models for i
 - **Default code review = Gemini + Codex + CodeRabbit in parallel, in the background**; **Fable** reads all three and arbitrates (not Opus). Cursor is **optional/experimental** — add it when you want a fourth angle; explicit "cursor review" / "check with Cursor" = Cursor only (`/cursor`), skipping the others.
 - **Cursor uses Composer 2.5 only** (never `-fast`, never another model family). If `cursor-agent` fails with "Connection lost / exceeded max retries", **check Tailscale first** (MagicDNS breaks its streaming connection) — see the `/cursor` skill's troubleshooting.
 - **Never install Python packages into system Python.** Always `python3 -m venv` first.
+
+## Cursor — how to run it
+
+Verified end-to-end 2026-08-02: `cursor-agent` v2026.06.19 at `~/.local/bin/`, logged in, `composer-2.5`
+listed as current, a real prompt round-tripped. Full detail in the [`/cursor` skill](skills/cursor/) — this
+is just the two commands worth remembering.
+
+```bash
+# Review — read-only planning mode, Cursor reads the diff itself
+cursor-agent -p --plan --trust --output-format text --model composer-2.5 \
+  "Run \`git --no-pager diff\` and review the changes. List real issues with severity, or say it's clean."
+
+# Brainstorm / Q&A — read-only ask mode
+cursor-agent -p --mode ask --trust --output-format text --model composer-2.5 "<prompt>"
+```
+
+- `--model composer-2.5` is **not optional** — the CLI defaults to `composer-2.5-fast`, which is the wrong model.
+- `--plan` and `--mode ask` are both read-only. Plain `-p` has write + shell access; don't use it for review.
+- Run it **in the background** (`run_in_background: true`, ~7 min timeout). Composer streams slower than
+  Codex and Gemini, and it's the one you don't want to block on.
+- Cursor's model list now includes Opus 5 1M, GPT-5.6 Sol and Grok 4.5. **Ignore them.** Composer's own
+  perspective is the entire reason Cursor is in the chain; the other families are already covered.
 
 ## Why three reviewers
 

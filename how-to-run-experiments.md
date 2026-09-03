@@ -23,7 +23,11 @@
 
 - **One variable at a time** — multiple changes = useless results.
 - **Run multiple times** — single run proves nothing.
-- **One experiment at a time** — never run experiments in parallel. Slow and systematic.
+- **One experiment at a time PER AGENT** — an agent runs a single experiment to completion before
+  starting another. Different agents may run different experiments concurrently; that is not parallelism
+  within an experiment, it is a fleet doing several one-at-a-time experiments at once. What is banned is
+  one agent interleaving two experiments, or two agents sharing one experiment's arms — both destroy
+  attribution. (Ruled by Almir 2026-08-25.)
 - **Document failures** — they're MORE valuable than successes.
 - **Audit log is living** — update `audit-log.md` immediately after each attempt, not at the end of the session. A log reconstructed from memory is fiction, not evidence.
 - **Findings: append when relevant.** Add to `findings.md` when an observation is relevant to the hypothesis (supports, contradicts, or qualifies it) or opens a new hypothesis worth investigating. No threshold, no approval gate — just cite the audit attempt + log that backs it. Revisable: amend in place with a dated note if new evidence changes the picture.
