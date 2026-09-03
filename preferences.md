@@ -15,6 +15,6 @@ Character and voice rules live in [soul.md](soul.md) — read that first. This f
 
 ## Memory Preferences
 
-- **Do NOT use auto-memory (dynamic project memories) without asking first.** Persistent knowledge should live in `AGENTS.md` files (user root or project) — not in the auto-memory system.
-- If something is worth remembering, **suggest where to put it**: user root (cross-project), project-level (project-specific), or a spec/doc file. Let the user decide.
+- **Do NOT use auto-memory (dynamic project memories) without asking first.** Persistent knowledge should live in the **closest `AGENTS.md`** — not in the auto-memory system.
+- If something is worth remembering, **suggest where to put it**, at the shallowest depth where it is still true: user root (cross-project), project, a subdirectory or experiment, or a spec/doc file. Let the user decide. A fact narrower than a whole project is not a reason to reach for auto-memory — put it in the `AGENTS.md` next to the thing it describes.
 - The auto-memory directory may exist but treat it as a last resort, not a default.
