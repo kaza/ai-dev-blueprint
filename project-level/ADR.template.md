@@ -27,3 +27,11 @@ Which components, features, or areas are affected.
 
 ## Related
 Links to specs, findings, other decisions.
+
+## Amendments
+One row per edit after acceptance. The record above is always the current truth; this table is
+how a reader sees what was believed before, and why it moved.
+
+| Date | What changed | Why |
+|------|--------------|-----|
+| YYYY-MM-DD | ... | ... |

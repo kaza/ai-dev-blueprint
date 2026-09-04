@@ -65,7 +65,13 @@ Lessons learned: "Google Vision struggles with IR-lit documents, had to add prep
 
 - Create when a decision spans multiple features
 - Never reuse numbers (even if deprecated)
-- Link superseding decisions bidirectionally
+- **Living, edited in place.** Facts, pins, scope and consequences update the existing record.
+  Every edit adds a dated row to the ADR's `## Amendments` table saying what changed and why —
+  that table is the history; git holds the diff. A separate history file is the same fact in
+  two places and is not allowed.
+- **A new ADR only when the decision itself reverses** — a different option from the table
+  wins. Then the old one gets `superseded by NNN` in its Status and the new one names what it
+  supersedes. Link both ways.
 - **Require human approval** before creating or modifying
 - See [project-level/ADR.template.md](project-level/ADR.template.md)
 
@@ -79,7 +85,7 @@ Three distinct categories of document. Each has a deliberate location and naming
 |---|---|---|---|---|
 | **Status docs** | Where we are, what's left | Repo root | `UPPERCASE.md` (e.g. `ROADMAP.md`, like `README.md`) | High — updated every work session |
 | **Specs** | What we are building, how it works, why | `specs/` | `lowercase-with-hyphens.md` | Low — updated on real design changes |
-| **ADRs** | Architectural decisions with context and consequences | `specs/decisions/` | `NNN-short-slug.md` (zero-padded) | Immutable once approved |
+| **ADRs** | Architectural decisions with context and consequences | `specs/decisions/` | `NNN-short-slug.md` (zero-padded) | Living; every edit dated in `## Amendments` |
 
 ## Status docs
 
@@ -95,7 +101,7 @@ Spec filenames are `lowercase-with-hyphens.md` (e.g. `architecture.md`, `legacy-
 
 ## ADRs
 
-Architectural Decision Records. Numbered `NNN-short-slug.md` (e.g. `004-parallel-import-verification.md`). Immutable once approved — if a decision changes, write a new ADR that **Supersedes** the old one; never edit history.
+Architectural Decision Records. Numbered `NNN-short-slug.md` (e.g. `004-parallel-import-verification.md`). Living documents: when the facts under a decision move, edit the ADR in place and add a dated row to its `## Amendments` table. Write a new ADR that **Supersedes** the old one only when the decision itself reverses. Rules in [§ADR Rules](#adr-rules).
 
 ## Open questions — inline with stable IDs
 
@@ -129,6 +135,6 @@ rg '^> \*\*Q-\d+ ANSWERED\*\*' # historical answers
 
 - **Specs own their domain.** If a spec discusses a topic, any open question on that topic lives inline in that spec.
 - **Roadmap tracks status only.** It does not define "done" (that's an ADR) and does not contain spec content.
-- **ADRs are immutable once approved.** Write a superseding ADR rather than editing.
+- **ADRs are living, and the current truth lives in one file.** Edit in place with a dated `## Amendments` row; a superseding ADR only when the decision itself reverses. A reader must never have to compute "024 minus what 029 overrides" in their head.
 - **Open questions never go in a central file.** They live where the context is. The index is produced by grep, not by a list.
 - **Cross-reference by ID, not by content.** If `specs/foo.md` needs to mention an open question raised in `specs/bar.md`, reference `Q-NNN` — don't copy the question content.
