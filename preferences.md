@@ -18,3 +18,13 @@ Character and voice rules live in [soul.md](soul.md) — read that first. This f
 - **Do NOT use auto-memory (dynamic project memories) without asking first.** Persistent knowledge should live in the **closest `AGENTS.md`** — not in the auto-memory system.
 - If something is worth remembering, **suggest where to put it**, at the shallowest depth where it is still true: user root (cross-project), project, a subdirectory or experiment, or a spec/doc file. Let the user decide. A fact narrower than a whole project is not a reason to reach for auto-memory — put it in the `AGENTS.md` next to the thing it describes.
 - The auto-memory directory may exist but treat it as a last resort, not a default.
+
+## Output Preferences
+
+- **NEVER use Artifacts.** Not for pages, dashboards, reports, diagrams, docs — nothing. I run
+  multiple Claude accounts and there is no reliable way for me to open an artifact URL from the
+  account that happens to be publishing it. An artifact link is a dead end, not a deliverable.
+- **Write a local file instead**, in the repo (or a sane path I can find), and give me the path.
+  Then open it for me — `open <file>` on macOS — or serve it on `localhost` if it needs a server.
+- This is not a soft preference. Do not "just this once" publish an artifact because the content
+  seems to suit one.
